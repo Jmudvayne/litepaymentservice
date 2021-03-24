@@ -8,6 +8,7 @@ package com.newstartup.litepaymentservice.application.configuration.usecase;
 
 import com.newstartup.litepaymentservice.application.core.domain.provider.AntiFraudProvider;
 import com.newstartup.litepaymentservice.application.core.domain.provider.BankProvider;
+import com.newstartup.litepaymentservice.application.core.domain.provider.ResultProvider;
 import com.newstartup.litepaymentservice.application.core.usecase.ProcessTransactionUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,9 +25,11 @@ public class UseCasesSetup {
     @Bean
     public ProcessTransactionUseCase processTransactionUseCase(
             AntiFraudProvider antiFraudProvider,
-            BankProvider bankProvider){
+            BankProvider bankProvider,
+            ResultProvider resultProvider){
         return new ProcessTransactionUseCase(
                 bankProvider,
-                antiFraudProvider);
+                antiFraudProvider,
+                resultProvider);
     }
 }

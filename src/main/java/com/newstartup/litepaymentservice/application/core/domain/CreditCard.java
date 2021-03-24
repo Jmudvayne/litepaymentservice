@@ -49,5 +49,13 @@ public class CreditCard {
      */
     private String franchise;
 
+    /**
+     * The masked card number
+     * @return
+     */
+    public String getMaskedNumber(){
+        return number.substring(0,4) + "******" + number.substring(number.length()-4);
+    }
+
 
 }
