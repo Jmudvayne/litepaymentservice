@@ -9,15 +9,16 @@ package com.newstartup.litepaymentservice.application.dataprovider.bank;
 import com.newstartup.litepaymentservice.application.core.domain.ProcessResponse;
 import com.newstartup.litepaymentservice.application.core.domain.ProcessTransaction;
 import com.newstartup.litepaymentservice.application.core.domain.provider.BankProvider;
+import reactor.core.publisher.Mono;
 
 public class BankProviderImpl implements BankProvider {
     @Override
-    public ProcessResponse processTransaction(ProcessTransaction processTransaction) {
-        return ProcessResponse
+    public Mono<ProcessResponse> processTransaction(ProcessTransaction processTransaction) {
+        return Mono.just(ProcessResponse
                 .builder()
                 .withCode("00")
-                .withId(processTransaction.getCorrelationId())//To Do
+                .withId(processTransaction.getId())
                 .withMessage("Transaccíon procesada")
-                .build();
+                .build());
     }
 }

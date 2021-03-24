@@ -6,6 +6,7 @@
 
 package com.newstartup.litepaymentservice.application.entrypoint.payment;
 
+import com.newstartup.litepaymentservice.application.core.domain.ProcessResponse;
 import com.newstartup.litepaymentservice.application.core.usecase.ProcessTransactionUseCase;
 import com.newstartup.litepaymentservice.application.entrypoint.payment.mapper.TransactionMapper;
 import com.newstartup.litepaymentservice.application.entrypoint.payment.model.TransactionRequest;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * An implementation of {@link PaymentProcessEntryPoint} that exposes the payment operation
@@ -48,15 +51,14 @@ public class PaymentProcessController implements PaymentProcessEntryPoint {
      */
     @Override
     @PostMapping
-    public ResponseEntity<TransactionResponse> paymentProcess(
+    public Mono<ResponseEntity<TransactionResponse>> paymentProcess(
             @RequestHeader Map<String, String> headers,
             @RequestBody TransactionRequest requestBody) {
 
-        var processResponse = processTransactionUseCase
-                .processTransaction(TransactionMapper.map(requestBody));
-
-        return ResponseEntity.ok(TransactionMapper.map(processResponse));
-
+        return processTransactionUseCase
+                .processTransaction(TransactionMapper.map(requestBody))
+                .map(TransactionMapper::map)
+                .map(ResponseEntity::ok);
 
     }
 }

@@ -7,6 +7,7 @@ package com.newstartup.litepaymentservice.application.core.domain.provider;
 
 import com.newstartup.litepaymentservice.application.core.domain.ProcessTransaction;
 import com.newstartup.litepaymentservice.application.core.domain.ValidationResponse;
+import reactor.core.publisher.Mono;
 
 /**
  * The provider that manage the validate operation around {@link ProcessTransaction}
@@ -22,5 +23,5 @@ public interface AntiFraudProvider {
      * @param processTransaction the transaction to process
      * @return a {@link ValidationResponse}
      */
-    ValidationResponse validateTransaction (ProcessTransaction processTransaction);
+    Mono<ValidationResponse> validateTransaction (ProcessTransaction processTransaction);
 }

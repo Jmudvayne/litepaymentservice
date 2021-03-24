@@ -28,6 +28,11 @@ import lombok.extern.slf4j.Slf4j;
 public class ProcessTransaction {
 
     /**
+     * The transaction identifier
+     */
+    private String id;
+
+    /**
      * The payer which requests to process the payment
      */
     private Payer payer;

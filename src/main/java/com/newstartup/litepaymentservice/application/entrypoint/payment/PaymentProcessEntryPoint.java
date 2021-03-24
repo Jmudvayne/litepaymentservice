@@ -12,6 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.http.ResponseEntity;
+import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -32,7 +33,7 @@ public interface PaymentProcessEntryPoint {
      * @return a {@link ResponseEntity} with a {@link TransactionResponse} into its body
      */
     @ApiOperation("Process a transaction request")
-    ResponseEntity<TransactionResponse> paymentProcess(
+    Mono<ResponseEntity<TransactionResponse>> paymentProcess(
             Map<String, String> headers,
             @ApiParam(
                     value = "The transaction that is going to be processed",

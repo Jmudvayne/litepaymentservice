@@ -1,0 +1,38 @@
+# ----------------------------------------------------------------------------------------------------------------------
+# Spring configurations
+# ----------------------------------------------------------------------------------------------------------------------
+
+spring:
+
+  application:
+    name: litepaymentservice
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: litepaymentservice
+# ----------------------------------------------------------------------------------------------------------------------
+# Server configurations
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Service configurations
+server:
+  http:
+    port: 8091
+
+
+# Service info
+info:
+  app:
+    name: Lite Payment Service
+    version: @project.version@
+    description: A Lite Payment Service
+
+
+antifraud:
+  service:
+    url: http://localhost:9561
+
+bank:
+  service:
+    url: http://localhost:9561

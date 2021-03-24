@@ -8,6 +8,7 @@ package com.newstartup.litepaymentservice.application.core.domain.provider;
 
 import com.newstartup.litepaymentservice.application.core.domain.ProcessResponse;
 import com.newstartup.litepaymentservice.application.core.domain.ProcessTransaction;
+import reactor.core.publisher.Mono;
 
 /**
  * The provider that manage the bank process operation around {@link ProcessTransaction}
@@ -18,5 +19,5 @@ import com.newstartup.litepaymentservice.application.core.domain.ProcessTransact
 @FunctionalInterface
 public interface BankProvider {
 
-    ProcessResponse processTransaction(ProcessTransaction processTransaction);
+    Mono<ProcessResponse> processTransaction(ProcessTransaction processTransaction);
 }

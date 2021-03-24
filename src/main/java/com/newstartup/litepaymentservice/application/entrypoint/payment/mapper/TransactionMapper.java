@@ -47,6 +47,7 @@ public class TransactionMapper {
         log.info("Mapping transaction request for: [{}]", request);
 
         var transaction = ProcessTransaction.builder()
+                .withId(request.getId())
                 .withTransactionType(TransactionType.valueOf(request.getTransactionType()))
                 .withCorrelationId(request.getCorrelationId())
                 .withInstallments(request.getInstallments() == null ? 0 : request.getInstallments())
